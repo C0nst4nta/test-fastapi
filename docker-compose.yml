@@ -6,9 +6,12 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app
+      - .:/testproject
+    working_dir: /testproject
     depends_on:
       - db
+    environment:
+      - PYTHONPATH=/testproject
 
   db:
     image: postgres:15
@@ -19,4 +22,4 @@ services:
       POSTGRES_PASSWORD: admin123
       POSTGRES_DB: fastapi_db
     ports:
-      - "7070:7070"
+      - "5433:5432"
